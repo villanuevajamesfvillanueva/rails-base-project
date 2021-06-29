@@ -3,6 +3,7 @@ class BrokersController < ApplicationController
 
   def show
     @broker = Broker.find(params[:id])
+    @broker_stocks = BrokerStock.where(user_id: params[:id])
   end
 
   def edit
