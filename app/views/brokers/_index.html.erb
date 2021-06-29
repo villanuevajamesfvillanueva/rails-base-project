@@ -9,6 +9,12 @@
       <div class="sidebar-content px-4 py-6">
         <ul class="flex flex-col w-full">
           <li class="my-px">
+            <a href="" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700">
+              <span class="flex items-center justify-center text-base text-white">Welcome, <%= current_user.username %></span>
+            </a>
+          </li>
+          <li class="my-px">
+            <!--href links are admins but account type is broker(approved) -->
             <a href="app/views/admins/_index.html.erb" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 bg-gray-100">
               <span class="flex items-center justify-center text-lg text-gray-400">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
@@ -96,19 +102,19 @@
                     <tr>
                         <td><%= link_to stock.symbol, stock_path(Stock.find_by(symbol: stock.symbol)) %></td>
                         <td><%= stock.company_name %></td>
-                        <td><%= stock.iex_realtime_price %></td>
+                        <td><%= stock.latest_price %></td>
                         <td><%= stock.change_percent_s %></td>
                         <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
                             <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
-                            <td><%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            <td><%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
                                 <%= f.hidden_field :stock_id, :value => stock.symbol %>
                                 <%= f.hidden_field :companyname, :value => stock.company_name %>
                                 <%= f.hidden_field :quantity, :value => nil %>
-                                <%= f.hidden_field :price, :value => stock.iex_realtime_price %>
-                                <td><%= f.submit 'Add to Portolio' %></td>
+                                <%= f.hidden_field :price, :value => stock.latest_price %>
+                                <td><%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                                 <% end %>
                         <% end %>
                     </tr>
@@ -132,19 +138,19 @@
                     <tr>
                         <td><%= stock.symbol %></td>
                         <td><%= stock.company_name %></td>
-                        <td><%= stock.iex_realtime_price %></td>
+                        <td><%= stock.latest_price %></td>
                         <td><%= stock.change_percent_s %></td>
                         <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
                             <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
-                            <td><%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            <td><%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
                                 <%= f.hidden_field :stock_id, :value => stock.symbol %>
                                 <%= f.hidden_field :companyname, :value => stock.company_name %>
                                 <%= f.hidden_field :quantity, :value => nil %>
-                                <%= f.hidden_field :price, :value => stock.iex_realtime_price %>
-                                <td><%= f.submit 'Add to Portolio' %></td>
+                                <%= f.hidden_field :price, :value => stock.latest_price %>
+                                <td><%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                                 <% end %>
                         <% end %>
                     </tr>    
@@ -169,19 +175,19 @@
                     <tr>
                         <td><%= stock.symbol %></td>
                         <td><%= stock.company_name %></td>
-                        <td><%= stock.iex_realtime_price %></td>
+                        <td><%= stock.latest_price %></td>
                         <td><%= stock.change_percent_s %></td>
                         <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
                             <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
-                            <td><%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            <td><%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
                                 <%= f.hidden_field :stock_id, :value => stock.symbol %>
                                 <%= f.hidden_field :companyname, :value => stock.company_name %>
                                 <%= f.hidden_field :quantity, :value => nil %>
-                                <%= f.hidden_field :price, :value => stock.iex_realtime_price %>
-                                <td><%= f.submit 'Add to Portolio' %></td>
+                                <%= f.hidden_field :price, :value => stock.latest_price %>
+                                <td><%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                                 <% end %>
                         <% end %>
                     </tr>    

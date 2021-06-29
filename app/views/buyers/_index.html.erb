@@ -9,6 +9,11 @@
       <div class="sidebar-content px-4 py-6">
         <ul class="flex flex-col w-full">
           <li class="my-px">
+            <a href="" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700">
+              <span class="flex items-center justify-center text-base text-white">Welcome, <%= current_user.username %></span>
+            </a>
+          </li>
+          <li class="my-px">
             <a href="app/views/admins/_index.html.erb" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 bg-gray-100">
               <span class="flex items-center justify-center text-lg text-gray-400">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
