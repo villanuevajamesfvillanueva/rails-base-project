@@ -9,7 +9,7 @@ class StocksController < ApplicationController
     )
 
     @stock = Stock.find(params[:id])
-    @chart = @client.chart(@stock.symbol, '1d', chart_interval: 10)
+    # @chart = @client.chart(@stock.symbol, '1d', chart_interval: 10)
   end
 
   def stock_params
