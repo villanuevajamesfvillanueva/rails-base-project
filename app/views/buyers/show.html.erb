@@ -32,7 +32,7 @@
                 <td><%= buyer_stock.companyname %></td>
                 <td><%= buyer_stock.quantity %></td>
                 <td><%= buyer_stock.price %></td>
-                <td><%= button_to 'Remove', buyer_stock_path(buyer_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                <td><%= button_to 'Sell', buyer_stock_path(buyer_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
             </tr>
             <% end %>
         </tbody>
