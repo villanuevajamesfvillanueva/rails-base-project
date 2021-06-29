@@ -7,7 +7,41 @@
    <div class="w-full xl:w-1/2 p-8 text-white text-3xl space-y-3">
     <p>Email: <%= @buyer.email %></p>
     <p>Username: <%= @buyer.username %></p>
-    <%= button_to "Back", admin_session_path,class: "mt-3 px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2" %>
+    <%= link_to "Back", 'javascript:history.go(-1);', class: "mt-3 px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2" %>
   </div>
 
+  
+</div>
+
+<div class='text-white'>Hello, Portfolio here
+    <% @buyer_stocks.each do |buyer_stock| %>
+        <div><%= buyer_stock.stock_id %></div>
+        <div><%= buyer_stock.companyname %></div>
+        <div><%= buyer_stock.quantity %></div>
+        <div><%= buyer_stock.price %></div>
+    <% end %>
+
+    <table class='text-white'>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Company</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @buyer_stocks.each do |buyer_stock| %>
+            <tr>
+                <td><%= buyer_stock.stock_id %></td>
+                <td><%= buyer_stock.companyname %></td>
+                <td><%= buyer_stock.quantity %></td>
+                <td><%= buyer_stock.price %></td>
+                <td><%= button_to 'Remove', buyer_stock_path(buyer_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>
