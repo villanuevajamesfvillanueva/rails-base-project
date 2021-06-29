@@ -75,6 +75,11 @@
       <div class="sidebar-content px-4 py-6">
         <ul class="flex flex-col w-full">
           <li class="my-px">
+            <a href="" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700">
+              <span class="flex items-center justify-center text-base text-white">Welcome, <%= current_user.username %></span>
+            </a>
+          </li>
+          <li class="my-px">
             <a href="app/views/admins/_index.html.erb" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 bg-gray-100">
               <span class="flex items-center justify-center text-lg text-gray-400">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
@@ -168,9 +173,9 @@
                   <tr>
                     <th data-priority="1" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                     <th data-priority="2" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
-                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Status</th>
-                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approve</th>
-                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
+                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
+                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
+                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
 
                   </tr>
                 </thead>
@@ -178,7 +183,7 @@
                   <% @users.each do |user| %>
                       <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap lg:mb-0">
                           <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                          <%= user.email %>
+                          <%= link_to user.email, user %>
                           </td>
                           <td class="w-full lg:w-auto p-1 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                               <%= user.type %>
@@ -192,7 +197,7 @@
                                   <%= f.hidden_field :approved, :value => true %>
                                   <%= f.submit 'Approve', class:"w-16 rounded text-xs text-center text-green-400 ring ring-green-400 p-1" %>
                               <% end %>
-                          <% else %>
+                          <% elsif user.type == 'Broker' && user.approved == true %>
                               <%= form_with model: user, method: :patch do |f| %>
                                   <%= f.hidden_field :approved, :value => false %>
                                   <%= f.submit 'Unapprove',class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1" %>
@@ -200,7 +205,7 @@
                           <% end %>
                           </td>
                           <td class="w-full lg:w-auto p-1 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                              <%= link_to 'Show', user %>
+                              
                           <% if user.type == 'Broker' %>
                           <%= link_to 'Edit', edit_broker_path(user) %>
                           <% elsif user.type == 'Buyer' %>
@@ -221,9 +226,9 @@
                         <tr>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
-                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Status</th>
-                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approve</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
                     </thead>
                     <tbody class="overflow-y-auto">
@@ -231,7 +236,7 @@
                     <% if user.type == "Buyer" %>
                         <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap m-6 lg:mb-0">
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <%= user.email %>
+                                <%= link_to user.email, user %><%= link_to user.email, user %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.type %>
@@ -245,7 +250,7 @@
                                     <%= f.hidden_field :approved, :value => true %>
                                     <%= f.submit 'Approve', class:"w-16 rounded text-xs text-center text-green-400 ring ring-green-400 p-1" %>
                                 <% end %>
-                            <% else %>
+                            <% elsif user.type == 'Broker' && user.approved == true %>
                                 <%= form_with model: user, method: :patch do |f| %>
                                     <%= f.hidden_field :approved, :value => false %>
                                     <%= f.submit 'Unapprove',class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1" %>
@@ -253,7 +258,7 @@
                             <% end %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                                <%= link_to 'Show', user %>
+                                
                                 <%= link_to 'Edit', edit_buyer_path(user) %>
                             </td>
                         </tr>
@@ -268,9 +273,9 @@
                         <tr>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
-                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Status</th>
-                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approve</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
                     </thead>
                     <tbody class="overflow-y-auto">
@@ -278,7 +283,7 @@
                     <% if user.type == "Broker" %>
                         <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap m-6 lg:mb-0">
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <%= user.email %>
+                            <%= link_to user.email, user %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.type %>
@@ -292,7 +297,7 @@
                                     <%= f.hidden_field :approved, :value => true %>
                                     <%= f.submit 'Approve', class:"w-16 rounded text-xs text-center text-green-400 ring ring-green-400 p-1" %>
                                 <% end %>
-                            <% else %>
+                            <% elsif user.type == 'Broker' && user.approved == true %>
                                 <%= form_with model: user, method: :patch do |f| %>
                                     <%= f.hidden_field :approved, :value => false %>
                                     <%= f.submit 'Unapprove',class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1" %>
@@ -300,7 +305,7 @@
                             <% end %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                                <%= link_to 'Show', user %>
+                                
                                 <%= link_to 'Edit', edit_broker_path(user) %>
                             </td>
                         </tr>
@@ -315,9 +320,9 @@
                         <tr>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
-                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Status</th>
-                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approve</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
                     </thead>
                     <tbody class="overflow-y-auto">
@@ -325,7 +330,7 @@
                     <% if user.type == 'Broker' && user.approved == false %>
                         <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap m-6 lg:mb-0">
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <%= user.email %>
+                            <%= link_to user.email, user %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.type %>
@@ -347,7 +352,7 @@
                             <% end %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                                <%= link_to 'Show', user %>
+                                
                                 <%= link_to 'Edit', edit_broker_path(user) %>
                             </td>
                         </tr>
@@ -362,9 +367,9 @@
                         <tr>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
-                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Status</th>
-                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approve</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
                     </thead>
                     <tbody class="overflow-y-auto">
@@ -372,7 +377,7 @@
                     <% if user.type == 'Broker' && user.approved == true %>
                         <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap m-6 lg:mb-0">
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <%= user.email %>
+                            <%= link_to user.email, user %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.type %>
@@ -386,7 +391,7 @@
                                     <%= f.hidden_field :approved, :value => true %>
                                     <%= f.submit 'Approve', class:"w-16 rounded text-xs text-center text-green-400 ring ring-green-400 p-1" %>
                                 <% end %>
-                            <% else %>
+                            <% elsif user.type == 'Broker' && user.approved == true %>
                                 <%= form_with model: user, method: :patch do |f| %>
                                     <%= f.hidden_field :approved, :value => false %>
                                     <%= f.submit 'Unapprove',class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1" %>
@@ -394,7 +399,7 @@
                             <% end %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                                <%= link_to 'Show', user %>
+                                
                                 <%= link_to 'Edit', edit_broker_path(user) %>
                             </td>
                         </tr>
