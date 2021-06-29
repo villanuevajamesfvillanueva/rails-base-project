@@ -23,7 +23,6 @@ class BuyerStocksController < ApplicationController
     redirect_to root_path, notice: 'Stock was removed from portfolio.'
   end
 
-
   def buyer_stock_params
     params.require(:buyer_stock).permit(:user_id, :stock_id, :companyname, :quantity, :price)
   end
