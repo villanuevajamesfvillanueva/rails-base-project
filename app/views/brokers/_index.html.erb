@@ -1,8 +1,78 @@
+  <!--Regular Datatables CSS-->
+	 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+	 <!--Responsive Extension Datatables CSS-->
+	 
+	  <style>
+		/*Overrides for Tailwind CSS */
+		/*Form fields*/
+		.dataTables_wrapper select,
+		.dataTables_wrapper .dataTables_filter input {
+			color: #4a5568; 			/*text-gray-700*/
+			padding-left: 1rem; 		/*pl-4*/
+			padding-right: 1rem; 		/*pl-4*/
+			padding-top: .2rem; 		/*pl-2*/
+			padding-bottom: .2rem; 		/*pl-2*/
+			line-height: 1.25; 			/*leading-tight*/
+			border-width: 2px; 			/*border-2*/
+			border-radius: .25rem; 		
+			border-color: #edf2f7; 		/*border-gray-200*/
+			background-color: #edf2f7; 	/*bg-gray-200*/
+		}
+
+		/*Row Hover*/
+		table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+			background-color: #ebf4ff;	/*bg-indigo-100*/
+		}
+		
+		/*Pagination Buttons*/
+		.dataTables_wrapper .dataTables_paginate .paginate_button		{
+			font-weight: 700;				/*font-bold*/
+			border-radius: .25rem;			/*rounded*/
+			border: 1px solid transparent;	/*border border-transparent*/
+		}
+		
+		/*Pagination Buttons - Current selected */
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current	{
+			color: #fff !important;				/*text-white*/
+			box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); 	/*shadow*/
+			font-weight: 700;					/*font-bold*/
+			border-radius: .25rem;				/*rounded*/
+			background: black !important;	
+			border: 1px solid transparent;		/*border border-transparent*/
+		}
+
+		/*Pagination Buttons - Hover */
+		.dataTables_wrapper .dataTables_paginate .paginate_button:hover		{
+			color: #fff !important;				/*text-white*/
+			box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);	 /*shadow*/
+			font-weight: 700;					/*font-bold*/
+			border-radius: .25rem;				/*rounded*/
+			background: black !important;		/*bg-indigo-500*/
+			border: 1px solid transparent;		/*border border-transparent*/
+		}
+		
+		/*Add padding to bottom border */
+		table.dataTable.no-footer {
+			border-bottom: 1px solid #e2e8f0;	/*border-b-1 border-gray-300*/
+			margin-top: 0.75em;
+			margin-bottom: 0.75em;
+		}
+		
+		/*Change colour of responsive icon*/
+		table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+			background-color: #667eea !important; /*bg-indigo-500*/
+		}
+	  </style>
+
+
+
+
+
 <div class="flex flex-row min-h-screen bg-gray-500 text-white">
     <aside class="sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-900">
       <div class="sidebar-header flex items-center justify-center py-4">
         <div class="inline-flex">
-            <span class="leading-10 text-gray-100 text-2xl font-bold ml-1">stonks</span>
+            <span class="leading-10 text-gray-100 text-4xl font-bold ml-1">stonks</span>
         </div>
       </div>
     <section class= "flex flex-col h-5/6">
@@ -80,33 +150,48 @@
           </div>
         </div>
       </header>
-      <div class="main-content flex flex-col flex-grow p-4">
-        <h1 class="font-bold text-2xl text-white">Dashboard</h1>
 
-        <div class="flex flex-col flex-grow bg-gray-500 rounded mt-4">
-               <p>Welcome <%= current_user.email %>! (<%= current_user.type %> account)</p>
-               <p>Pokus lang tayo sa goal natin 👍</p> 
-            <h3>Most Active</h3>
-            <table>
+<div class="main-content flex flex-col flex-grow p-4">
+  <div class="flex flex-col flex-grow bg-gray-500 rounded">            
+    <div class="main-content flex flex-col flex-grow p-2">
+      <div class="flex flex-col flex-grow rounded">
+        <div class="w-full mx-auto  rounded">
+                <!-- Tabs --> 
+                <ul id="tabs" class="inline-flex w-full px-1 pt-2 ">
+                    <li class="px-4 py-2 -mb-px font-bold text-gray-800 border-b-2 border-gray-900 rounded-t opacity-30"><a id="default-tab" href="#first">Most Active</a></li>
+                    <li class="px-4 py-2 -mb-px font-bold text-gray-800 border-b-2 border-gray-900 rounded-t opacity-30"><a href="#second">Gainers</a></li>
+                    <li class="px-4 py-2 -mb-px font-bold text-gray-800 border-b-2 border-gray-900 rounded-t opacity-30"><a href="#third">Losers</a></li>
+                </ul>
+
+                <!-- Tab Contents -->
+          <div id="tab-contents">
+            <div id="first" class="p-4">
+              <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1em; padding-bottom: 1em;">
                 <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Company</th>
-                        <th>Price</th>
-                        <th>Change Percent</th>
-                    </tr>
-                </thead>
+                  <tr>
+                    <th data-priority="1" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Symbol</th>
+                    <th data-priority="2" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Company</th>
+                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Price</th>
+                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Change Percent</th>
+                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Action</th>
 
+                  </tr>
+                </thead>
                 <tbody>
                     <% @most_active.each do |stock|%>
-                    <tr>
-                        <td><%= link_to stock.symbol, stock_path(Stock.find_by(symbol: stock.symbol)) %></td>
-                        <td><%= stock.company_name %></td>
-                        <td><%= stock.latest_price %></td>
-                        <td><%= stock.change_percent_s %></td>
+                      <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap lg:mb-0">
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.symbol %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.company_name %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.latest_price %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.change_percent_s %></td>
                         <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
                             <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
-                            <td><%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                            <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                            <%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -117,29 +202,34 @@
                                 <td><%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                                 <% end %>
                         <% end %>
-                    </tr>
+                    </tr>    
                     <% end %>
                 </tbody>
-            </table>
-
-            <h3>Gainers</h3>
-            <table>
+              </table>
+            </div>
+            <div id="second" class="hidden p-4">
+              <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1.2em; padding-bottom: 1.2em;">
                 <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Company</th>
-                        <th>Price</th>
-                        <th>Change Percent</th>
-                    </tr>
-                </thead>
+                  <tr>
+                    <th data-priority="1" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Symbol</th>
+                    <th data-priority="2" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Company</th>
+                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Price</th>
+                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Change Percent</th>
+                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Action</th>
 
+                  </tr>
+                </thead>
                 <tbody>
                     <% @gainers.each do |stock|%>
-                    <tr>
-                        <td><%= stock.symbol %></td>
-                        <td><%= stock.company_name %></td>
-                        <td><%= stock.latest_price %></td>
-                        <td><%= stock.change_percent_s %></td>
+                      <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap lg:mb-0">
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.symbol %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.company_name %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.latest_price %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.change_percent_s %></td>
                         <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
                             <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
                             <td><%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
@@ -150,36 +240,42 @@
                                 <%= f.hidden_field :companyname, :value => stock.company_name %>
                                 <%= f.hidden_field :quantity, :value => nil %>
                                 <%= f.hidden_field :price, :value => stock.latest_price %>
-                                <td><%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                            <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                <%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                                 <% end %>
                         <% end %>
                     </tr>    
                     <% end %>
-
                 </tbody>
-            </table>
-
-            <h3>Losers</h3>
-            <table>
+              </table>
+            </div>
+            <div id="third" class="hidden p-4">
+              <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1em; padding-bottom: 1em;">
                 <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Company</th>
-                        <th>Price</th>
-                        <th>Change Percent</th>
-                    </tr>
-                </thead>
+                  <tr>
+                    <th data-priority="1" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Symbol</th>
+                    <th data-priority="2" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Company</th>
+                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Price</th>
+                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Change Percent</th>
+                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Action</th>
 
+                  </tr>
+                </thead>
                 <tbody>
                     <% @losers.each do |stock|%>
-                    <tr>
-                        <td><%= stock.symbol %></td>
-                        <td><%= stock.company_name %></td>
-                        <td><%= stock.latest_price %></td>
-                        <td><%= stock.change_percent_s %></td>
+                      <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap lg:mb-0">
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.symbol %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.company_name %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.latest_price %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= stock.change_percent_s %></td>
                         <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
                             <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
-                            <td><%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                            <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                            <%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -192,19 +288,21 @@
                         <% end %>
                     </tr>    
                     <% end %>
-
                 </tbody>
-            </table>
-            
+              </table>
+            </div>
+          </div>
         </div>
       </div>
-      <footer class="footer px-4 py-6">
+    </div>
+      <footer class="footer px-4">
         <div class="footer-content">
-          <p class="text-sm text-white text-center">© Stonks 2021. All rights reserved.</p>
+          <p class="text-sm font-medium text-black text-center">© Stonks 2021. All rights reserved.</p>
         </div>
       </footer>
-    </main>
+    </div>
   </div>
+</main>
 
 <script>
 
@@ -234,3 +332,21 @@ tabTogglers.forEach(function(toggler) {
 
 document.getElementById("default-tab").click();
 </script>
+
+	<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!--Datatables -->
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			
+			var table = $('#table').DataTable( {
+					responsive: true
+				} )
+				.columns.adjust()
+				.responsive.recalc();
+		} );
+	
+	</script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
