@@ -115,3 +115,7 @@
     1. git reset --soft HEAD~1
     *to further undo git add
         git reset
+
+
+## added new column to users table: balance
+    -for now, admins add balance to user accounts
