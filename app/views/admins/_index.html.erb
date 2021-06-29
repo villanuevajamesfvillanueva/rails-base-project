@@ -164,22 +164,25 @@
                     <th data-priority="1" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                     <th data-priority="2" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
                     <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
-                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
-                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
-
+                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Balance</th>
+                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
+                    <th data-priority="6" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <% @users.each do |user| %>
                       <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap lg:mb-0">
                           <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                          <%= link_to user.email, user %>
+                                <%= link_to user.email, user %>
                           </td>
                           <td class="w-full lg:w-auto p-1 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                               <%= user.type %>
                           </td>
                           <td class="w-full lg:w-auto p-1 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                               <%= user.approved %>
+                          </td>
+                          <td class="w-full lg:w-auto p-1 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+                              <%= user.balance %>
                           </td>
                           <td class="w-full lg:w-auto p-1 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                           <% if user.type == 'Broker' && user.approved == false %>
@@ -217,6 +220,7 @@
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Balance</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
@@ -233,6 +237,9 @@
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.approved %>
+                            </td>
+                            <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+                                <%= user.balance %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                             <% if user.type == 'Broker' && user.approved == false %>
@@ -264,6 +271,7 @@
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Balance</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
@@ -280,6 +288,9 @@
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.approved %>
+                            </td>
+                            <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+                                <%= user.balance %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                             <% if user.type == 'Broker' && user.approved == false %>
@@ -311,6 +322,7 @@
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Balance</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
@@ -327,6 +339,9 @@
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.approved %>
+                            </td>
+                            <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+                                <%= user.balance %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                             <% if user.type == 'Broker' && user.approved == false %>
@@ -358,6 +373,7 @@
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Balance</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
@@ -374,6 +390,9 @@
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.approved %>
+                            </td>
+                            <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+                                <%= user.balance %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                             <% if user.type == 'Broker' && user.approved == false %>
