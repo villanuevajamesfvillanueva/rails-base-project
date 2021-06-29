@@ -14,5 +14,7 @@ class HomeController < ApplicationController
     @losers = @client.stock_market_list(:losers)
 
     @users = User.all
+    @broker_stocks = BrokerStock.all
+    @buyer_stocks = BuyerStock.all
   end
 end

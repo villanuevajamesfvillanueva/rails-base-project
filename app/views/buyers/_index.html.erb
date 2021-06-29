@@ -24,14 +24,14 @@
             </a>
           </li>
           <li class="my-px">
-            <a href="app/views/admins/portfolio.html.erb" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
+            <div class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
               <span class="flex items-center justify-center text-lg text-gray-400">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                   <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
                 </svg>
               </span>
-              <span class="ml-3">Portfolio</span>
-            </a>
+              <span class="ml-3"><%= link_to 'Portfolio', buyer_path(current_user) %></span>
+            </div>
           </li>
           <li class="my-px">
             <a href="#" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
@@ -84,8 +84,42 @@
 
         <div class="flex flex-col flex-grow bg-gray-500 rounded mt-4">
             <p>Welcome <%= current_user.email %>! (<%= current_user.type %> account)</p>
-            <p>Pokus lang tayo sa goal natin 👍</p> 
-            
+            <p>Pokus lang tayo sa goal natin 👍</p>
+            <h3>Available Stocks</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Company</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% @broker_stocks.each do |broker_stock| %>
+                    <tr>
+                        <td><%= broker_stock.stock_id %></td>
+                        <td><%= broker_stock.companyname %></td>
+                        <td><%= broker_stock.quantity %></td>
+                        <td><%= broker_stock.price %></td>
+                        <% if BuyerStock.all.where(user_id: current_user.id, stock_id: broker_stock.stock_id).count > 0 %>
+                            <% id = BuyerStock.find_by(user_id: current_user.id, stock_id: broker_stock.stock_id) %>
+                            <td><%= button_to 'Remove', buyer_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                        <% else %>
+                            <%= form_with model: BuyerStock.new, local: true do |f| %>
+                                <%= f.hidden_field :user_id, :value => current_user.id %>
+                                <%= f.hidden_field :stock_id, :value => broker_stock.stock_id %>
+                                <%= f.hidden_field :companyname, :value => broker_stock.companyname %>
+                                <%= f.hidden_field :quantity, :value => nil %>
+                                <%= f.hidden_field :price, :value => broker_stock.price %>
+                                <td><%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                                <% end %>
+                        <% end %>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table> 
         </div>
       </div>
       <footer class="footer px-4 py-6">
