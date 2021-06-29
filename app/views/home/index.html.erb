@@ -6,12 +6,9 @@
         <%= render "buyers/index"%>
 
     <% elsif broker_signed_in? && current_user.approved? %>
-        <%#= render "brokers/index"%>
+        <%= render "brokers/index"%>
+        <%= link_to  "Sign out", destroy_broker_session_path, method: :delete %>
 
-        
-    <%= link_to  "Sign out", destroy_broker_session_path, method: :delete %>
-
-        
     <% elsif broker_signed_in? && !current_user.approved? %>
         <%= render "brokers/unapproved"%>
     
