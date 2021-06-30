@@ -8,7 +8,8 @@ class BrokerStocksController < ApplicationController
       @broker_stock.save
       redirect_to root_path, notice: 'Stock was added to the Portfolio.'
       # create transact instance
-      @transact = Transact.new(broker_id: 'API', buyer_id: params[:id], stock_id: params[:stock_id], quantity: params[:quantity], price: params[:price])
+    #   @transact = Transact.new(broker_id: 'API', buyer_id: params[:id], stock_id: params[:stock_id], quantity: params[:quantity], price: params[:price])
+      @transact = Transact.new(broker_id: 'API', buyer_id: params[:id], stock_id: params[:stock_id], price: params[:price])
       @transact.save
     else
       redirect_to root_path, alert: 'Unable to add'
@@ -27,7 +28,7 @@ class BrokerStocksController < ApplicationController
   end
 
   def broker_stock_params
-    params.require(:broker_stock).permit(:user_id, :stock_id, :companyname, :quantity, :price)
+    params.require(:broker_stock).permit(:user_id, :stock_id, :companyname, :price)
   end
 
   def transact_params
