@@ -155,9 +155,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                   <tr>
                     <th data-priority="1" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Symbol</th>
                     <th data-priority="2" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Company</th>
-                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Quantity</th>
-                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Price</th>
-                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Action</th>
+                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Price</th>
+                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -167,8 +166,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <%= broker_stock.stock_id %></td>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= broker_stock. companyname %></td>
-                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <%= broker_stock.quantity %></td>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= broker_stock.price %></td>
                         <% if BuyerStock.all.where(user_id: current_user.id, stock_id: broker_stock.stock_id).count > 0 %>
