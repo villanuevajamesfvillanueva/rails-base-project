@@ -1,40 +1,210 @@
+<!--Regular Datatables CSS-->
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+<!--Responsive Extension Datatables CSS-->
+<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
 
-<br/><br/>
-<div class="container max-w-5xl bg-black mx-auto xl:w-3xl h-full flex justify-center align-center bg-transparent rounded-2xl p-12">
-  <div class="relative hidden xl:block xl:w-1/2 h-full">
-      <%= image_tag("checking-boxes-animate.svg", :alt => "rss feed") %>
-  </div> 
-  
-   <div class="w-full xl:w-1/2 p-8 text-white text-3xl space-y-3">
-    <p>Email: <%= @broker.email %></p>
-    <p>Username: <%= @broker.username %></p>
-    <%= link_to "Back", 'javascript:history.go(-1);', class: "mt-3 px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2" %>
+<style>
+/*Overrides for Tailwind CSS */
+/*Form fields*/
+.dataTables_wrapper select,
+.dataTables_wrapper .dataTables_filter input {
+    color: #4a5568; 			/*text-gray-700*/
+    padding-left: 1rem; 		/*pl-4*/
+    padding-right: 1rem; 		/*pl-4*/
+    padding-top: .2rem; 		/*pl-2*/
+    padding-bottom: .2rem; 		/*pl-2*/
+    line-height: 1.25; 			/*leading-tight*/
+    border-width: 2px; 			/*border-2*/
+    border-radius: .25rem; 		
+    border-color: #edf2f7; 		/*border-gray-200*/
+    background-color: #edf2f7; 	/*bg-gray-200*/
+}
+
+/*Row Hover*/
+table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+    background-color: #75b1fa;	/*bg-indigo-100*/
+}
+
+/*Pagination Buttons*/
+.dataTables_wrapper .dataTables_paginate .paginate_button		{
+    font-weight: 700;				/*font-bold*/
+    border-radius: .25rem;			/*rounded*/
+    border: 1px solid transparent;	/*border border-transparent*/
+}
+
+/*Pagination Buttons - Current selected */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current	{
+    color: #fff !important;				/*text-white*/
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); 	/*shadow*/
+    font-weight: 700;					/*font-bold*/
+    border-radius: .25rem;				/*rounded*/
+    background: black !important;	
+    border: 1px solid transparent;		/*border border-transparent*/
+}
+
+/*Pagination Buttons - Hover */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover		{
+    color: #fff !important;				/*text-white*/
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);	 /*shadow*/
+    font-weight: 700;					/*font-bold*/
+    border-radius: .25rem;				/*rounded*/
+    background: black !important;		/*bg-indigo-500*/
+    border: 1px solid transparent;		/*border border-transparent*/
+}
+
+/*Add padding to bottom border */
+table.dataTable.no-footer {
+    border-bottom: 1px solid #e2e8f0;	/*border-b-1 border-gray-300*/
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+}
+
+/*Change colour of responsive icon*/
+table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+    background-color: #667eea !important; /*bg-indigo-500*/
+}
+
+</style>
+
+<div class="flex flex-row min-h-screen bg-gray-500 text-white">
+    <aside class="sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-900">
+      <div class="sidebar-header flex items-center justify-center py-4">
+            <%= image_tag("logo.svg", class:"w-8 h-8") %>
+            <h1 class="leading-10 text-gray-100 text-4xl font-bold ml-1 pb-2">stonks</h1>
+      </div> 
+    <section class= "flex flex-col h-5/6">
+      <div class="sidebar-content px-4 py-6">
+        <ul class="flex flex-col w-full">
+          <li class="my-px">
+            <a href="" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700">
+              <span class="flex items-center justify-center text-base text-white">Welcome, <%= current_user.username %></span>
+            </a>
+          </li>
+          <li class="my-px">
+            <a href="app/views/admins/_index.html.erb" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 bg-gray-100">
+              <span class="flex items-center justify-center text-lg text-gray-400">
+                <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+              </span>
+              <span class="ml-3">Dashboard</span>
+            </a>
+          </li>
+          <li class="my-px">
+            <div class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
+              <span class="flex items-center justify-center text-lg text-gray-400">
+                <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                  <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+                </svg>
+              </span>
+              <span class="ml-3"><%= link_to 'Portfolio', broker_path(current_user) %></span>
+            </div>
+          </li>
+          <li class="my-px">
+            <a href="#" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
+              <span class="flex items-center justify-center text-lg text-gray-400">
+                <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                  <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                </svg>
+              </span>
+              <span class="ml-3">Transactions</span>
+            </a>
+          </li>
+          </ul>
+        </div>
+        <div class="sidebar-content flex flex-col justify-end px-4 py-6 h-96">
+          <ul>  
+          <li class="my-px">
+            <span><%= link_to 'Profile', edit_broker_registration_path, class:"flex flex-row items-center ml-3 h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700" %></span>
+            </a>
+          </li>
+          <li class="my-px">
+            <span><%= link_to 'Sign Out', destroy_broker_session_path, method: :delete, class:"flex flex-row items-center ml-3 h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700" %></span>
+          </li>
+          </ul>
+        </div>
+      </section>
+    </aside>
+    <main class="main flex flex-col flex-grow -ml-64 md:ml-0 transition-all duration-150 ease-in">
+      <header class="header bg-gray-900 shadow py-4 px-4">
+        <div class="header-content flex items-center flex-row">
+          <form action="#">
+            <div class="hidden md:flex relative">
+              <div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-black">
+                <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <input id="search" type="text" name="search"class="text-sm sm:text-base text-black placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-300 w-full h-10 focus:outline-none focus:border-indigo-400" placeholder="Search..."/>
+            </div>
+          </form>
+          <div class="flex justify-center content-center justify-items-center ml-auto">
+            <span class="text-lg text-white font-bold pr-4 pt-1">Balance: $<%= current_user.balance %></span>
+            <p class="text-lg text-white font-bold pr-4 pt-1"><%= current_user.username %></p>
+            <a href class="flex flex-row items-center">
+            <img src="https://pbs.twimg.com/profile_images/378800000298815220/b567757616f720812125bfbac395ff54_normal.png" alt class="h-10 w-10 bg-gray-200 border rounded-full"/> 
+            </a>
+          </div>
+        </div>
+      </header>
+      <div class="main-content flex flex-col flex-grow p-4">
+        <h1 class="font-bold text-2xl text-white">Portfolio</h1>
+        <div class="flex flex-col flex-grow bg-gray-500 rounded mt-4">
+            <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1em; padding-bottom: 1em;">
+                <thead>
+                  <tr>
+                    <th data-priority="1" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Symbol</th>
+                    <th data-priority="2" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Company</th>
+                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Quantity</th>
+                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Price</th>
+                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   <% @broker_stocks.each do |broker_stock| %>
+                      <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap lg:mb-0">
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= broker_stock.stock_id %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= broker_stock. companyname %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= broker_stock.quantity %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= broker_stock.price %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= button_to 'Sell', broker_stock_path(broker_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                    </tr>    
+                    <% end %>
+                </tbody>
+              </table>
+        </div>
+      </div>
+      <footer class="footer px-4 py-6">
+        <div class="footer-content">
+          <%= link_to "Back", :back, class: "mt-3 px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2" %>
+          <p class="text-sm text-white text-center">© Stonks 2021. All rights reserved.</p>
+        </div>
+      </footer>
+    </main>
   </div>
 
-</div>
 
-<div class='text-white'>Hello, Portfolio here
-    <table class='text-white'>
-        <thead>
-            <tr>
-                <th>Symbol</th>
-                <th>Company</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Action</th>
-            </tr>
-        </thead>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!--Datatables -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script>
+    $(document).ready(function() {
+        
+        var table = $('#table').DataTable( {
+                responsive: true
+            } )
+            .columns.adjust()
+            .responsive.recalc();
+    } );
 
-        <tbody>
-            <% @broker_stocks.each do |broker_stock| %>
-            <tr>
-                <td><%= broker_stock.stock_id %></td>
-                <td><%= broker_stock.companyname %></td>
-                <td><%= broker_stock.quantity %></td>
-                <td><%= broker_stock.price %></td>
-                <td><%= button_to 'Sell', broker_stock_path(broker_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
-            </tr>
-            <% end %>
-        </tbody>
-    </table>
-</div>
+</script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    
+    
