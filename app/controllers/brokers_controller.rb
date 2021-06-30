@@ -28,6 +28,6 @@ class BrokersController < ApplicationController
   private
 
   def broker_params
-    params.require(:broker).permit(:email, :username, :approved, :confirmable, :type, :balance)
+    params.require(:broker).permit(:email, :username, :approved, :confirmable, :type, :balance, :transact_fee)
   end
 end

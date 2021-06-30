@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_30_152402) do
+ActiveRecord::Schema.define(version: 2021_06_30_163554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2021_06_30_152402) do
     t.integer "user_id", null: false
     t.string "stock_id", null: false
     t.string "companyname"
-    t.integer "quantity"
     t.decimal "price", precision: 10, scale: 2
   end
 
@@ -74,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_06_30_152402) do
     t.boolean "confirmable"
     t.string "type"
     t.decimal "balance"
+    t.decimal "transact_fee"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

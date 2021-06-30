@@ -257,6 +257,7 @@
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Balance</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Transact fee</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
@@ -276,6 +277,9 @@
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.balance %>
+                            </td>
+                            <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+                                <%= user.transact_fee %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                             <% if user.type == 'Broker' && user.approved == false %>
@@ -307,6 +311,7 @@
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Balance</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Transact fee</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
@@ -326,6 +331,9 @@
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.balance %>
+                            </td>
+                            <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+                                <%= user.transact_fee %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                             <% if user.type == 'Broker' && user.approved == false %>
@@ -358,6 +366,7 @@
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Balance</th>
+                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Transact fee</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
@@ -377,6 +386,9 @@
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.balance %>
+                            </td>
+                            <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+                                <%= user.transact_fee %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                             <% if user.type == 'Broker' && user.approved == false %>
