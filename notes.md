@@ -124,3 +124,9 @@
 
 ## added new column to users table: balance
     -for now, admins add balance to user accounts
+
+## BUGS:
+    1. when 2 brokers have the same stock in their portfolio, the stock will appear twice in buyer's dashboard (since 2 diff vendors are selling the same thing)
+        bug: when buyer adds the stock, both listings get added to buyer_stocks
+        temp fix: add broker_id column to buyer_stocks
+        cons: buyer_stocks table will be identical to transacts model

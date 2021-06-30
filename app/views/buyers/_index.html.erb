@@ -1,3 +1,71 @@
+<!--Regular Datatables CSS-->
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+<!--Responsive Extension Datatables CSS-->
+<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+
+<style>
+/*Overrides for Tailwind CSS */
+/*Form fields*/
+.dataTables_wrapper select,
+.dataTables_wrapper .dataTables_filter input {
+    color: #4a5568; 			/*text-gray-700*/
+    padding-left: 1rem; 		/*pl-4*/
+    padding-right: 1rem; 		/*pl-4*/
+    padding-top: .2rem; 		/*pl-2*/
+    padding-bottom: .2rem; 		/*pl-2*/
+    line-height: 1.25; 			/*leading-tight*/
+    border-width: 2px; 			/*border-2*/
+    border-radius: .25rem; 		
+    border-color: #edf2f7; 		/*border-gray-200*/
+    background-color: #edf2f7; 	/*bg-gray-200*/
+}
+
+/*Row Hover*/
+table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+    background-color: #75b1fa;	/*bg-indigo-100*/
+}
+
+/*Pagination Buttons*/
+.dataTables_wrapper .dataTables_paginate .paginate_button		{
+    font-weight: 700;				/*font-bold*/
+    border-radius: .25rem;			/*rounded*/
+    border: 1px solid transparent;	/*border border-transparent*/
+}
+
+/*Pagination Buttons - Current selected */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current	{
+    color: #fff !important;				/*text-white*/
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); 	/*shadow*/
+    font-weight: 700;					/*font-bold*/
+    border-radius: .25rem;				/*rounded*/
+    background: black !important;	
+    border: 1px solid transparent;		/*border border-transparent*/
+}
+
+/*Pagination Buttons - Hover */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover		{
+    color: #fff !important;				/*text-white*/
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);	 /*shadow*/
+    font-weight: 700;					/*font-bold*/
+    border-radius: .25rem;				/*rounded*/
+    background: black !important;		/*bg-indigo-500*/
+    border: 1px solid transparent;		/*border border-transparent*/
+}
+
+/*Add padding to bottom border */
+table.dataTable.no-footer {
+    border-bottom: 1px solid #e2e8f0;	/*border-b-1 border-gray-300*/
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+}
+
+/*Change colour of responsive icon*/
+table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+    background-color: #667eea !important; /*bg-indigo-500*/
+}
+
+</style>
+
 <div class="flex flex-row min-h-screen bg-gray-500 text-white">
     <aside class="sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-900">
       <div class="sidebar-header flex items-center justify-center py-4">
@@ -80,34 +148,35 @@
         </div>
       </header>
       <div class="main-content flex flex-col flex-grow p-4">
-        <h1 class="font-bold text-2xl text-white">Dashboard</h1>
-
+        <h1 class="font-bold text-2xl text-white">Available Stocks</h1>
         <div class="flex flex-col flex-grow bg-gray-500 rounded mt-4">
-            <p>Welcome <%= current_user.email %>! (<%= current_user.type %> account)</p>
-            <p>Pokus lang tayo sa goal natin 👍</p>
-            <h3>Available Stocks</h3>
-            <table>
+            <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1em; padding-bottom: 1em;">
                 <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Company</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                    </tr>
+                  <tr>
+                    <th data-priority="1" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Symbol</th>
+                    <th data-priority="2" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Company</th>
+                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Quantity</th>
+                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Price</th>
+                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Action</th>
+                  </tr>
                 </thead>
-
                 <tbody>
                     <% @broker_stocks.each do |broker_stock| %>
-                    <tr>
-                        <td><%= broker_stock.stock_id %></td>
-                        <td><%= broker_stock.companyname %></td>
-                        <td><%= broker_stock.quantity %></td>
-                        <td><%= broker_stock.price %></td>
+                      <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap lg:mb-0">
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= broker_stock.stock_id %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= broker_stock. companyname %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= broker_stock.quantity %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <%= broker_stock.price %></td>
                         <% if BuyerStock.all.where(user_id: current_user.id, stock_id: broker_stock.stock_id).count > 0 %>
                             <% id = BuyerStock.find_by(user_id: current_user.id, stock_id: broker_stock.stock_id) %>
-                            <td><%= button_to 'Remove', buyer_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                            <td><%= button_to 'Remove', buyer_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer text-center' %></td>
                         <% else %>
                             <%= form_with model: BuyerStock.new, local: true do |f| %>
+                                <%= f.hidden_field :broker_id, :value => broker_stock.user_id %>
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
                                 <%= f.hidden_field :stock_id, :value => broker_stock.stock_id %>
                                 <%= f.hidden_field :companyname, :value => broker_stock.companyname %>
@@ -115,10 +184,10 @@
                                 <td><%= f.number_field :quantity, class: 'text-gray-900 pl-4 w-32', placeholder: 'Qty' %><%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                                 <% end %>
                         <% end %>
-                    </tr>
+                    </tr>    
                     <% end %>
                 </tbody>
-            </table> 
+              </table>
         </div>
       </div>
       <footer class="footer px-4 py-6">
@@ -128,32 +197,20 @@
       </footer>
     </main>
   </div>
-
-<script>
-
-let tabsContainer = document.querySelector("#tabs");
-let tabTogglers = tabsContainer.querySelectorAll("a");
-
-tabTogglers.forEach(function(toggler) {
-  toggler.addEventListener("click", function(e) {
-    e.preventDefault();
-
-    let tabName = this.getAttribute("href");
-
-    let tabContents = document.querySelector("#tab-contents");
-
-    for (let i = 0; i < tabContents.children.length; i++) {
-
-      tabTogglers[i].parentElement.classList.remove("border-blue-400", "border-b",  "-mb-px", "opacity-100");  tabContents.children[i].classList.remove("hidden");
-      if ("#" + tabContents.children[i].id === tabName) {
-        continue;
-      }
-      tabContents.children[i].classList.add("hidden");
-
-    }
-    e.target.parentElement.classList.add("border-blue-400", "border-b-4", "-mb-px", "opacity-100");
-  });
-});
-
-document.getElementById("default-tab").click();
-</script>
+<!-- jQuery -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!--Datatables -->
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			
+			var table = $('#table').DataTable( {
+					responsive: true
+				} )
+				.columns.adjust()
+				.responsive.recalc();
+		} );
+	
+	</script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
