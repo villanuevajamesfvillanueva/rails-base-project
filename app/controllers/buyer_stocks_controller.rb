@@ -10,8 +10,8 @@ class BuyerStocksController < ApplicationController
       # create transact instance
       @transact = current_buyer.transacts.build(broker_id: params[:buyer_stock][:broker_id], stock_id: params[:buyer_stock][:stock_id], quantity: params[:buyer_stock][:quantity], price: params[:buyer_stock][:price])
       @transact.save
-      #update balance
-      @balance = params[:buyer_stock][:quantity].to_f*params[:buyer_stock][:price].to_f
+      # update balance
+      @balance = params[:buyer_stock][:quantity].to_f * params[:buyer_stock][:price].to_f
       current_buyer.balance -= @balance
       current_buyer.save
     else
@@ -28,8 +28,8 @@ class BuyerStocksController < ApplicationController
     @buyer_stock = BuyerStock.find_by(stock_id: params[:id])
     @buyer_stock.destroy
     redirect_to root_path, notice: 'Stock was removed from portfolio.'
-    #update balance
-    current_buyer.balance += @buyer_stock.quantity*@buyer_stock.price
+    # update balance
+    current_buyer.balance += @buyer_stock.quantity * @buyer_stock.price
     current_buyer.save
   end
 
