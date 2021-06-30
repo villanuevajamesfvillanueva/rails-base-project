@@ -1,0 +1,8 @@
+<% @transacts.each do |transact| %>
+    <div><%= User.find(transact.broker_id).username %></div> <!--broker-->
+    <div><%= User.find(transact.buyer_id).username%></div>  <!--buyer-->
+    <div><%= transact.stock_id %></div>
+    <div><%= transact.quantity %></div>
+    <div><%= transact.price %></div>
+    <div><%= transact.updated_at %></div>
+<% end %>
