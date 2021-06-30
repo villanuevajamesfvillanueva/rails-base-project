@@ -11,4 +11,8 @@ class TransactsController < ApplicationController
   def transact_params
     params.require(:transact).permit(:broker_id, :buyer_id, :stock_id, :quantity, :price)
   end
+
+  def show
+    @transacts = Transact.where(buyer_id: params[:id])
+  end
 end

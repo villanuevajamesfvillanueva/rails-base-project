@@ -81,14 +81,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
             </a>
           </li>
           <li class="my-px">
-            <a href="app/views/admins/_index.html.erb" class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 bg-gray-100">
+            <div class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 bg-gray-100">
               <span class="flex items-center justify-center text-lg text-gray-400">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                   <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                 </svg>
               </span>
-              <span class="ml-3">Dashboard</span>
-            </a>
+              <span class="ml-3"><%= link_to 'Dashboard', root_path %></span>
+            </div>
           </li>
           <li class="my-px">
             <div class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
@@ -155,9 +155,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                   <tr>
                     <th data-priority="1" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Symbol</th>
                     <th data-priority="2" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Company</th>
-                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Quantity</th>
-                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Price</th>
-                    <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Action</th>
+                    <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Price</th>
+                    <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -168,11 +167,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= broker_stock. companyname %></td>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <%= broker_stock.quantity %></td>
-                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= broker_stock.price %></td>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <%= button_to 'Sell', broker_stock_path(broker_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                        <%= button_to 'Remove', broker_stock_path(broker_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
                     </tr>    
                     <% end %>
                 </tbody>
