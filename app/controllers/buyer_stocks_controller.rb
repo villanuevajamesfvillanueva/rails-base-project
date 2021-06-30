@@ -30,5 +30,4 @@ class BuyerStocksController < ApplicationController
   def buyer_stock_params
     params.require(:buyer_stock).permit(:user_id, :stock_id, :companyname, :quantity, :price)
   end
-
 end
