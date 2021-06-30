@@ -1,6 +1,7 @@
   <!--Regular Datatables CSS-->
 	 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
 	 <!--Responsive Extension Datatables CSS-->
+     <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
 	 
 	  <style>
 		/*Overrides for Tailwind CSS */
@@ -157,7 +158,7 @@
             <!-- Tab Contents -->
             <div id="tab-contents">
             <div id="first" class="p-4">
-              <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1em; padding-bottom: 1em;">
+              <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1em;">
                 <thead>
                   <tr>
                     <th data-priority="1" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
@@ -213,8 +214,7 @@
               </table>
             </div>
             <div id="second" class="hidden p-4">
-                <table class="w-full">
-                    <thead flex text-white w-full>
+                <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1em;">                    <thead flex text-white w-full>
                         <tr>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
@@ -251,8 +251,7 @@
                 </table>
             </div>
             <div id="third" class="hidden p-4">
-                 <table class="w-full">
-                    <thead flex text-white w-full>
+                <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1em;">                    <thead flex text-white w-full>
                         <tr>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
@@ -302,8 +301,7 @@
                 </table>
             </div>
             <div id="fourth" class="hidden p-4">
-               <table class="w-full">
-                    <thead flex text-white w-full>
+                <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1em;">                    <thead flex text-white w-full>
                         <tr>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
@@ -352,8 +350,8 @@
                     </tbody>
                 </table>
             </div>
-            <div id="fifth" class="hidden p-4">
-                 <table class="w-full">
+             <div id="fifth" class="hidden p-4">
+                <table id="table" class="stripe hover w-full" style="width:100%; height:100%; padding-top: 1em;">                 <table class="w-full">
                     <thead flex text-white w-full>
                         <tr>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Email</th>
