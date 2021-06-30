@@ -33,7 +33,7 @@ class BuyerStocksController < ApplicationController
     @buyer_stock = BuyerStock.find_by(stock_id: params[:id])
     @buyer_stock.destroy
     redirect_to root_path, notice: 'Stock was removed from portfolio.'
-    
+
     # update balance
     current_buyer.balance += @buyer_stock.quantity * @buyer_stock.price
     current_buyer.save
