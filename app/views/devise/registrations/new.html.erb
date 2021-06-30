@@ -5,11 +5,10 @@
         <div class="relative hidden w-full h-auto bg-black bg-cover border-r rounded-l-lg lg:block lg:w-6/12">
           <div class="relative z-10 m-12 text-left ">
             <a class="flex items-center w-32 mb-4 font-medium text-white title-font md:mb-10">
-              <div class="w-2 h-2 p-2 mr-2 rounded-full bg-gradient-to-tr from-blue-300 to-blue-600">
-              </div>
-              <h2 class="font-bold tracking-tighter text-white text-4xl transition duration-500 ease-in-out transform hover:text-lightBlack-500 dark:text-lightBlue-400"> Stonks </h2>
+              <%= image_tag("logo.svg", class:"w-12 h-12") %>
+              <h2 class="font-bold tracking-tighter text-white text-4xl transition duration-500 ease-in-out transform hover:text-lightBlack-500 dark:text-lightBlue-400 pl-2 pb-2"> stonks </h2>
             </a>
-            <h2 class="mt-12 mb-2 text-2xl font-semibold tracking-tighter text-white sm:text-3xl title-font"> Create an account. </h2>
+            <h2 class="mt-12 mb-2 text-2xl font-semibold tracking-tighter text-white sm:text-2xl title-font"> Create an account. </h2>
             <div class="w-full mt-16 mb-8 text-base leading-relaxed text-white sm:md:w-3/3 lg:text-1xl "> All you have to do is choose the section you need, remove the one that you do not need for that project and paste the one you need in that moment. All the section have been given the same left/right padding. Because consistence is king. </div>
           </div>
         </div>
@@ -50,39 +49,6 @@
   </div>
 </section>
         
-
-
-
-        
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-    <div class="field">
-        <%= f.label :username %><br />
-        <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-    </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
 
 <%= link_to 'New Buyer Sign Up', new_buyer_registration_path %><br/>
 <%= link_to 'New Broker Sign Up', new_broker_registration_path %><br/>

@@ -67,9 +67,8 @@
 <div class="flex flex-row min-h-screen bg-gray-400 text-white">
     <aside class="sidebar w-64  md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-900">
       <div class="sidebar-header flex items-center justify-center py-4">
-        <div class="inline-flex">
-            <span class="leading-10 text-gray-100 text-4xl font-bold ml-1">stonks</span>
-        </div>
+            <%= image_tag("logo.svg", class:"w-8 h-8") %>
+            <h1 class="leading-10 text-gray-100 text-4xl font-bold ml-1 pb-2">stonks</h1>
       </div>
     <section class= "flex flex-col h-5/6">
       <div class="sidebar-content px-4 py-6">
@@ -221,7 +220,6 @@
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Type</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Approved?</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Balance</th>
-                            <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions</th>
                             <th class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Actions(s.depr)</th>
                         </tr>
                     </thead>
@@ -230,7 +228,7 @@
                     <% if user.type == "Buyer" %>
                         <tr class="bg-gray-200 lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap m-6 lg:mb-0">
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                                <%= link_to user.email, user %><%= link_to user.email, user %>
+                                <%= link_to user.email, user %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.type %>
@@ -241,19 +239,7 @@
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.balance %>
                             </td>
-                            <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                            <% if user.type == 'Broker' && user.approved == false %>
-                                <%= form_with model: user, method: :patch do |f| %>
-                                    <%= f.hidden_field :approved, :value => true %>
-                                    <%= f.submit 'Approve', class:"w-16 rounded text-xs text-center text-green-400 ring ring-green-400 p-1" %>
-                                <% end %>
-                            <% elsif user.type == 'Broker' && user.approved == true %>
-                                <%= form_with model: user, method: :patch do |f| %>
-                                    <%= f.hidden_field :approved, :value => false %>
-                                    <%= f.submit 'Unapprove',class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1" %>
-                                <% end %>
-                            <% end %>
-                            </td>
+                           
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 
                                 <%= link_to 'Edit', edit_buyer_path(user) %>

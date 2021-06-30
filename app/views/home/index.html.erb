@@ -4,7 +4,6 @@
 
     <% if buyer_signed_in? %>
         <%= render "buyers/index"%>
-
     <% elsif broker_signed_in? && current_user.approved? %>
         <%= render "brokers/index"%>
     <% elsif broker_signed_in? && !current_user.approved? %>
