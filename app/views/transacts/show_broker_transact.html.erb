@@ -181,7 +181,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= transact.price %></td>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <%= transact.updated_at %></td>
+                        <%= transact.updated_at.strftime(" %B %d, %Y at %I:%M%p") %></td>
                     </tr>    
                     <% end %>
                 </tbody>
