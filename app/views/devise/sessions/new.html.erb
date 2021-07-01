@@ -37,12 +37,9 @@
         </div>
           <div>
               <%= f.submit "Log in",type:"submit", class: "w-full flex justify-center bg-indigo-500 text-gray-100 p-4  rounded-full tracking-wide
-                  font-semibold  focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300" %>
+                  font-semibold  focus:outline-none focus:shadow-outline hover:bg-indigo-600 shadow-lg cursor-pointer transition ease-in duration-300 mb-6" %>
           </div>
-          <p class="flex flex-col items-center justify-center text-center text-md text-gray-500">
-            <%= link_to 'Home', root_path %><br>
-            
-          </p>
+          <%= link_to "Back", :back, class: "rounded-full mt-3 px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-gray-900 border border-transparent rounded-md shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2" %>
         <% end %>
       </form>
     </div>

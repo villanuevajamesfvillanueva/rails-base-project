@@ -98,7 +98,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                   <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
                 </svg>
               </span>
-              <span class="ml-3"><%= link_to 'Portfolio', buyer_path(current_user) %></span>
+              <span class="ml-3"><%= link_to 'Portfolio', admin_path(current_user) %></span>
             </div>
           </li>
           <li class="my-px">
@@ -122,11 +122,11 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
         <div class="sidebar-content flex flex-col justify-end px-4 py-6 h-96">
           <ul>  
           <li class="my-px">
-            <span><%= link_to 'Profile', edit_buyer_registration_path, class:"flex flex-row items-center ml-3 h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700" %></span>
+            <span><%= link_to 'Profile', edit_admin_registration_path, class:"flex flex-row items-center ml-3 h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700" %></span>
             </a>
           </li>
           <li class="my-px">
-            <span><%= link_to 'Sign Out', destroy_buyer_session_path, method: :delete, class:"flex flex-row items-center ml-3 h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700" %></span>
+            <span><%= link_to 'Sign Out', destroy_admin_session_path, method: :delete, class:"flex flex-row items-center ml-3 h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700" %></span>
           </li>
           </ul>
         </div>
