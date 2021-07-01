@@ -3,7 +3,8 @@
 
 /*add styles here*/
 html{
-    background-color: rgb(46, 45, 45)
+    background-color: rgb(46, 45, 45);
+    scroll-behavior : smooth;
 }
 
 @import "tailwindcss/utilities";
