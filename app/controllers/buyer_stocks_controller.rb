@@ -4,7 +4,7 @@ class BuyerStocksController < ApplicationController
   def create
     @cost = params[:buyer_stock][:quantity].to_f * params[:buyer_stock][:price].to_f
     # check if stock already exists in portfolio
-    
+
     if not_added?(current_buyer.id, params[:buyer_stock][:stock_id])
       @buyer_stock = BuyerStock.new(buyer_stock_params)
       # update balance
@@ -20,22 +20,18 @@ class BuyerStocksController < ApplicationController
       else
         redirect_to root_path, alert: 'Insufficient balance'
       end
-    
-    else
-      # update balance and buyer_stock
-      if current_buyer.balance >= @cost
-        current_buyer.balance -= @cost
-        current_buyer.save
 
-        #update buyer_stock
-        @existing_stock = BuyerStock.find_by(user_id: current_buyer.id, stock_id: params[:buyer_stock][:stock_id])
-        @existing_stock.quantity += params[:buyer_stock][:quantity].to_i
-        @existing_stock.save
-        redirect_to root_path, notice: 'Stock was added to the Portfolio.'
-      end
-    
-    
-      
+    elsif current_buyer.balance >= @cost
+      # update balance and buyer_stock
+      current_buyer.balance -= @cost
+      current_buyer.save
+
+      # update buyer_stock
+      @existing_stock = BuyerStock.find_by(user_id: current_buyer.id, stock_id: params[:buyer_stock][:stock_id])
+      @existing_stock.quantity += params[:buyer_stock][:quantity].to_i
+      @existing_stock.save
+      redirect_to root_path, notice: 'Stock was added to the Portfolio.'
+
     end
     # redirect_to root_path, alert: @buyer_stock.errors.messages.to_s
   end
@@ -62,9 +58,8 @@ class BuyerStocksController < ApplicationController
     current_buyer.save
   end
 
-
-
   private
+
   def buyer_stock_params
     params.require(:buyer_stock).permit(:user_id, :stock_id, :companyname, :quantity, :price, :broker_id)
   end
