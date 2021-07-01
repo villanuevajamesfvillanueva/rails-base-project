@@ -188,7 +188,7 @@
                               <%= user.approved %>
                           </td>
                           <td class="w-full lg:w-auto p-1 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                              <%= user.balance %>
+                              <%= number_to_currency(user.balance, :unit => "Php ") %>
                           </td>
                           <td class="w-full lg:w-auto p-1 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                           <% if user.type == 'Broker' && user.approved == false %>
@@ -243,7 +243,7 @@
                                 <%= user.approved %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                                <%= user.balance %>
+                                <%= number_to_currency(user.balance, :unit => "Php ") %>
                             </td>
                            
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
@@ -282,7 +282,7 @@
                                 <%= user.approved %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                                <%= user.balance %>
+                                <%= number_to_currency(user.balance, :unit => "Php ") %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.transact_fee %>
@@ -336,7 +336,7 @@
                                 <%= user.approved %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                                <%= user.balance %>
+                                <%= number_to_currency(user.balance, :unit => "Php ") %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.transact_fee %>
@@ -391,7 +391,7 @@
                                 <%= user.approved %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-                                <%= user.balance %>
+                                <%= number_to_currency(user.balance, :unit => "Php ") %>
                             </td>
                             <td class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
                                 <%= user.transact_fee %>

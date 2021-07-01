@@ -95,16 +95,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
             <div class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
               <span class="flex items-center justify-center text-lg text-gray-400">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
-                  <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
-                </svg>
-              </span>
-              <span class="ml-3"><%= link_to 'Portfolio', admin_path(current_user) %></span>
-            </div>
-          </li>
-          <li class="my-px">
-            <div class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
-              <span class="flex items-center justify-center text-lg text-gray-400">
-                <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                   <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                 </svg>
               </span>
@@ -116,6 +106,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                 <span class="ml-3"><%= link_to "Transactions", admin_transact_path(current_user) %></span>
               <% end %>
             </div>
+          </li>
+          <li class="my-px">
+            <span><%= link_to '+  Add Broker', new_broker_registration_path, class:"flex flex-row items-center ml-3 h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700" %></span>
+            </a>
+          </li>
+          <li class="my-px">
+            <span><%= link_to '+  Add Buyer', new_buyer_registration_path, class:"flex flex-row items-center ml-3 h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700" %></span>
+            </a>
           </li>
           </ul>
         </div>
@@ -146,7 +144,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
             </div>
           </form>
           <div class="flex justify-center content-center justify-items-center ml-auto">
-            <span class="text-lg text-white font-bold pr-4 pt-1">Balance: $<%= current_user.balance %></span>
             <a href class="flex flex-row items-center">
             <img src="https://pbs.twimg.com/profile_images/378800000298815220/b567757616f720812125bfbac395ff54_normal.png" alt class="h-10 w-10 bg-gray-200 border rounded-full"/> 
             </a>
