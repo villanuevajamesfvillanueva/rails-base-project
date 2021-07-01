@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_30_181759) do
+ActiveRecord::Schema.define(version: 2021_07_01_155053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_06_30_181759) do
     t.boolean "approved"
     t.boolean "confirmable"
     t.string "type"
-    t.decimal "balance"
+    t.decimal "balance", precision: 12, scale: 2
     t.decimal "transact_fee"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
