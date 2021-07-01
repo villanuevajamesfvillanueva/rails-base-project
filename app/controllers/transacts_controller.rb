@@ -19,4 +19,8 @@ class TransactsController < ApplicationController
   def show_broker_transact
     @transacts = Transact.where(broker_id: params[:id])
   end
+
+  def show_admin_transact
+    @transacts = Transact.where(admin_id: params[:id])
+  end
 end
