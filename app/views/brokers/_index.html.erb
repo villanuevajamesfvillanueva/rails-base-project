@@ -66,14 +66,11 @@
 	  </style>
 
 
-
-
-
 <div class="flex flex-row min-h-screen bg-gray-500 text-white">
     <aside class="sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-900">
       <div class="sidebar-header flex items-center justify-center py-4">
-            <%= image_tag("logo.svg", class:"w-8 h-8") %>
-            <h1 class="leading-10 text-gray-100 text-4xl font-bold ml-1 pb-2">stonks</h1>
+        <%= image_tag("logo.svg", class:"w-8 h-8") %>
+        <h1 class="leading-10 text-gray-100 text-4xl font-bold ml-1 pb-2">stonks</h1>
       </div>      
     <section class= "flex flex-col h-5/6">
       <div class="sidebar-content px-4 py-6">
@@ -85,7 +82,7 @@
           </li>
           <li class="my-px">
             <!--href links are admins but account type is broker(approved) -->
-            <div class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-700 bg-gray-100">
+            <div class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700">
               <span class="flex items-center justify-center text-lg text-gray-400">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
                   <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
@@ -148,7 +145,6 @@
           </form>
           <div class="flex justify-center content-center justify-items-center ml-auto">
             <span class="text-lg text-white font-bold pr-4 pt-1">Balance: $<%= current_user.balance %></span>
-            <p class="text-lg text-white font-bold pr-4 pt-1"><%= current_user.username %></p>
             <a href class="flex flex-row items-center">
             <img src="https://pbs.twimg.com/profile_images/378800000298815220/b567757616f720812125bfbac395ff54_normal.png" alt class="h-10 w-10 bg-gray-200 border rounded-full"/> 
             </a>
@@ -194,15 +190,16 @@
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= stock.change_percent_s %></td>
                         <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
-                            <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <%= button_to 'Remove', broker_stock_path(stock.symbol), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                            <%= button_to 'Remove', broker_stock_path(stock.symbol), method: :delete, data: { confirm: 'Are you sure?' }, class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1 cursor-pointer" %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
                                 <%= f.hidden_field :stock_id, :value => stock.symbol %>
                                 <%= f.hidden_field :companyname, :value => stock.company_name %>
                                 <%= f.hidden_field :price, :value => stock.latest_price %>
-                                <td><%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                                <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                <%= f.submit 'Add to Portolio', class:"w-24 rounded text-xs text-center text-green-400 ring ring-green-400 p-1 cursor-pointer"%></td>
                                 <% end %>
                         <% end %>
                     </tr>    
@@ -234,16 +231,18 @@
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= stock.change_percent_s %></td>
                         <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
-                            <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
-                            <td><%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                        <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
+                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                            <%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1 cursor-pointer" %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
                                 <%= f.hidden_field :stock_id, :value => stock.symbol %>
                                 <%= f.hidden_field :companyname, :value => stock.company_name %>
                                 <%= f.hidden_field :price, :value => stock.latest_price %>
-                                <td><%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
-                                <% end %>
+                                <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                <%= f.submit 'Add to Portolio', class:"w-24 rounded text-xs text-center text-green-400 ring ring-green-400 p-1 cursor-pointer" %></td>
+                            <% end %>
                         <% end %>
                     </tr>    
                     <% end %>
@@ -259,7 +258,6 @@
                     <th data-priority="3" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Price</th>
                     <th data-priority="4" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Change Percent</th>
                     <th data-priority="5" class="p-3 font-bold uppercase bg-gray-900 text-white border border-gray-300 hidden lg:table-cell">Action</th>
-
                   </tr>
                 </thead>
                 <tbody>
@@ -276,14 +274,15 @@
                         <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
                             <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
                             <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                            <%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                            <%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1 cursor-pointer" %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
                                 <%= f.hidden_field :stock_id, :value => stock.symbol %>
                                 <%= f.hidden_field :companyname, :value => stock.company_name %>
                                 <%= f.hidden_field :price, :value => stock.latest_price %>
-                                <td><%= f.submit 'Add to Portolio', class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                                <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                <%= f.submit 'Add to Portolio', class:"w-24 rounded text-xs text-center text-green-400 ring ring-green-400 p-1 cursor-pointer" %></td>
                                 <% end %>
                         <% end %>
                     </tr>    
