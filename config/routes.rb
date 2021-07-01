@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/transacts/broker/:id', to: 'transacts#show_broker_transact', as: 'broker_transact'
   get '/transacts/admin/:id', to: 'transacts#show_admin_transact', as: 'admin_transact'
 
-  root 'home#index'
+   root 'home#index'
   # root 'home#welcome'
+  
 end

@@ -1,6 +1,4 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     @client = IEX::Api::Client.new(
       publishable_token: Rails.application.credentials.iex_publishable_token,
