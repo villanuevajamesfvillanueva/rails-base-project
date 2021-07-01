@@ -175,7 +175,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= buyer_stock.price %></td>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <%#= quantity to sell here  %><%= button_to 'Sell', buyer_stock_path(buyer_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-gray-900 px-1 w-36 cursor-pointer' %></td>
+                        <%= button_to 'Sell', buyer_stock_path(buyer_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' }, class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1 cursor-pointer" %></td>
                     </tr>    
                     <% end %>
                 </tbody>
