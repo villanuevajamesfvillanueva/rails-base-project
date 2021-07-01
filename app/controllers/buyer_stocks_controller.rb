@@ -25,15 +25,21 @@ class BuyerStocksController < ApplicationController
   end
 
   def destroy
+    # create transact instance
+    @stock = BuyerStock.find_by(user_id: current_user.id, stock_id: params[:id])
+    @transact = current_buyer.transacts.build(broker_id: current_user.id, buyer_id: nil, stock_id: params[:id], quantity: @stock.quantity, price: @stock.price)
+    @transact.save
+
     @buyer_stock = BuyerStock.find_by(stock_id: params[:id])
     @buyer_stock.destroy
     redirect_to root_path, notice: 'Stock was removed from portfolio.'
+
     # update balance
     current_buyer.balance += @buyer_stock.quantity * @buyer_stock.price
     current_buyer.save
   end
 
   def buyer_stock_params
-    params.require(:buyer_stock).permit(:user_id, :stock_id, :companyname, :quantity, :price)
+    params.require(:buyer_stock).permit(:user_id, :stock_id, :companyname, :quantity, :price, :broker_id)
   end
 end
