@@ -21,6 +21,6 @@ class TransactsController < ApplicationController
   end
 
   def show_admin_transact
-    @transacts = Transact.where(admin_id: params[:id])
+    @transacts = Transact.all
   end
 end

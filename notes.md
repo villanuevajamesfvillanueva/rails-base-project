@@ -6,6 +6,11 @@
     5. git rebase master
     6. git stash pop
 
+## when pulling in working branch
+    1. git stash
+    2. git pull origin master --rebase
+    3. git stash pop
+
 ## when pushing:
     1. *make sure you are in your working branch
     2. git add files to be pushed
