@@ -140,3 +140,11 @@
     1. problem: update table comes before create table migration
         fix: edit date of update table migration to a value before create table migration;
             also, do the same edit in schema_migrations table in db
+    2. problem: drop table comes before create table
+        fix: delete drop table migration file
+
+
+## 
+    reset heroku db (refresh db)
+    heroku run rails db:environment:set RAILS_ENV=production
+    heroku run rails db:migrate (setup di inaallow ni heroku)
