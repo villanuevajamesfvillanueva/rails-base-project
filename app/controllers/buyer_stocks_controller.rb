@@ -15,7 +15,7 @@ class BuyerStocksController < ApplicationController
 
         # create transact instance
         @broker_email = User.find(params[:buyer_stock][:broker_id]).email
-      @buyer_email = User.find(current_buyer.id).email
+        @buyer_email = User.find(current_buyer.id).email
         @transact = current_buyer.transacts.build(broker_id: params[:buyer_stock][:broker_id], stock_id: params[:buyer_stock][:stock_id], quantity: params[:buyer_stock][:quantity], price: params[:buyer_stock][:price], broker_email: @broker_email, buyer_email: @buyer_email)
         @transact.save
         redirect_to root_path, notice: 'Stock was added to the Portfolio.'
