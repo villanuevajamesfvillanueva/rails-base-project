@@ -132,6 +132,20 @@
         cons: buyer_stocks table will be identical to transacts model
 
 
+##  HEROKU DEPLOYMENT
+    $ heroku login
+    $ heroku create
+    $ heroku rename <app-name>
+
+    $ git add .
+    $ git commit -m “commit message”
+    $ git push
+
+    $ git push heroku master
+    $ heroku run rails db:migrate
+    $ heroku open
+
+
 ## heroku not working in project folder:
     1. uncomment nodejs version in .tool-versions file
     2. make sure to not push .tool-versions
@@ -144,7 +158,8 @@
         fix: delete drop table migration file
 
 
-## 
+## heroku app deployment:
+    1. problem: heroku run rails db:migrate migration conflicts
     reset heroku db (refresh db)
     heroku run rails db:environment:set RAILS_ENV=production
     heroku run rails db:migrate (setup di inaallow ni heroku)
