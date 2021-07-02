@@ -49,3 +49,6 @@ config/database.yml
 app/custom_modules/.iex_token.rb
 /config/credentials/development.key
 /config/credentials/environment.key
+
+# uncomment when installing packages
+.tool-versions
