@@ -130,3 +130,13 @@
         bug: when buyer adds the stock, both listings get added to buyer_stocks
         temp fix: add broker_id column to buyer_stocks
         cons: buyer_stocks table will be identical to transacts model
+
+
+## heroku not working in project folder:
+    1. uncomment nodejs version in .tool-versions file
+    2. make sure to not push .tool-versions
+    
+## migration file conflict:
+    1. problem: update table comes before create table migration
+        fix: edit date of update table migration to a value before create table migration;
+            also, do the same edit in schema_migrations table in db
