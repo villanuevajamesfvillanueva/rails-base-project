@@ -9,7 +9,7 @@ class TransactsController < ApplicationController
   #   end
 
   def transact_params
-    params.require(:transact).permit(:broker_id, :buyer_id, :stock_id, :quantity, :price)
+    params.require(:transact).permit(:broker_id, :buyer_id, :stock_id, :quantity, :price, :broker_email, :buyer_email)
   end
 
   def show_buyer_transact
