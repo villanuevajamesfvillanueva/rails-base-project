@@ -171,7 +171,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <%= broker_stock. companyname %></td>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= broker_stock.price %></td>
-                        <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                        <td class="w-full lg:w-auto text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                          <div class="flex justify-start align-center ml-20">
                           <%= form_with model: BuyerStock.new, local: true do |f| %>
                             <%= f.hidden_field :broker_id, :value => broker_stock.user_id %>
                             <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -183,8 +184,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                           <% end %>
                             <% if BuyerStock.all.where(user_id: current_user.id, stock_id: broker_stock.stock_id).count > 0 %>
                               <% id = BuyerStock.find_by(user_id: current_user.id, stock_id: broker_stock.stock_id) %>
-                              <%= link_to image_tag("delete_red.svg", class:"w-4 h-4"), buyer_stock_path(broker_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' } %>
-                              </td><%#= button_to 'Remove', buyer_stock_path(broker_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' }, class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1 cursor-pointer" %>
+                              <%= link_to image_tag("delete_red.svg", class:"w-4 h-6 ml-4"), buyer_stock_path(broker_stock.stock_id), method: :delete, data: { confirm: 'Are you sure?' } %>
+                         </div>
+                        </td>
                           <% end %>
                       </tr>    
                     <% end %>
