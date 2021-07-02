@@ -10,7 +10,7 @@
 #     )
 #   end
 
-#   it 'display index page of broker' do
+#   it 'display index page of admin' do
 #     get root_path
 #     expect(response.status).to be(302)
 #   end
