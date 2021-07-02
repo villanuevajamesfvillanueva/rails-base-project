@@ -38,4 +38,5 @@
     #     end
     # end
     
-    User.create(email: 'admin1@email.com', approved: TRUE, type: 'Admin', username: 'admin1')
+    User.create(email: 'ronald_admin@email.com', approved: TRUE, type: 'Admin', username: 'Ronald_admin', password: '123456', password_confirmation: '123456')
+    User.create(email: 'james_admin@email.com', approved: TRUE, type: 'Admin', username: 'James_admin', password: '123456', password_confirmation: '123456')
