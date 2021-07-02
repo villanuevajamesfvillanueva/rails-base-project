@@ -188,12 +188,12 @@
                         <%= stock.latest_price %></td>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= stock.change_percent_s %></td>
-                        <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
+                        <% if BrokerStock.all.where(broker_id: current_user.id, stock_id: stock.symbol).count > 0 %>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                             <%= button_to 'Remove', broker_stock_path(stock.symbol), method: :delete, data: { confirm: 'Are you sure?' }, class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1 cursor-pointer" %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
-                                <%= f.hidden_field :user_id, :value => current_user.id %>
+                                <%= f.hidden_field :broker_id, :value => current_user.id %>
                                 <%= f.hidden_field :stock_id, :value => stock.symbol %>
                                 <%= f.hidden_field :companyname, :value => stock.company_name %>
                                 <%= f.hidden_field :price, :value => stock.latest_price %>
@@ -229,13 +229,13 @@
                         <%= stock.latest_price %></td>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= stock.change_percent_s %></td>
-                        <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
-                        <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
+                        <% if BrokerStock.all.where(broker_id: current_user.id, stock_id: stock.symbol).count > 0 %>
+                        <% id = BrokerStock.find_by(broker_id: current_user.id, stock_id: stock.symbol) %>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                             <%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1 cursor-pointer" %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
-                                <%= f.hidden_field :user_id, :value => current_user.id %>
+                                <%= f.hidden_field :broker_id, :value => current_user.id %>
                                 <%= f.hidden_field :stock_id, :value => stock.symbol %>
                                 <%= f.hidden_field :companyname, :value => stock.company_name %>
                                 <%= f.hidden_field :price, :value => stock.latest_price %>
@@ -270,13 +270,13 @@
                         <%= stock.latest_price %></td>
                         <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <%= stock.change_percent_s %></td>
-                        <% if BrokerStock.all.where(user_id: current_user.id, stock_id: stock.symbol).count > 0 %>
-                            <% id = BrokerStock.find_by(user_id: current_user.id, stock_id: stock.symbol) %>
+                        <% if BrokerStock.all.where(broker_id: current_user.id, stock_id: stock.symbol).count > 0 %>
+                            <% id = BrokerStock.find_by(broker_id: current_user.id, stock_id: stock.symbol) %>
                             <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                             <%= button_to 'Remove', broker_stock_path(id), method: :delete, data: { confirm: 'Are you sure?' }, class: "w-16 rounded text-xs text-center text-red-400 ring ring-red-400 p-1 cursor-pointer" %></td>
                         <% else %>
                             <%= form_with model: BrokerStock.new, local: true do |f| %>
-                                <%= f.hidden_field :user_id, :value => current_user.id %>
+                                <%= f.hidden_field :broker_id, :value => current_user.id %>
                                 <%= f.hidden_field :stock_id, :value => stock.symbol %>
                                 <%= f.hidden_field :companyname, :value => stock.company_name %>
                                 <%= f.hidden_field :price, :value => stock.latest_price %>
