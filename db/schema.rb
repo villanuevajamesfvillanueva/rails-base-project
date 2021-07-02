@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_155053) do
+ActiveRecord::Schema.define(version: 2021_07_02_135715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "broker_stocks", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "broker_id", null: false
     t.string "stock_id", null: false
     t.string "companyname"
     t.decimal "price", precision: 10, scale: 2
   end
 
   create_table "buyer_stocks", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "buyer_id", null: false
     t.string "stock_id", null: false
     t.string "companyname"
     t.integer "quantity"
