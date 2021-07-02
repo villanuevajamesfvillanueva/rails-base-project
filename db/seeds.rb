@@ -19,16 +19,16 @@
     # end
 
 
-    # @client = IEX::Api::Client.new(
-    #     publishable_token: Rails.application.credentials.iex_publishable_token,
-    #     secret_token: Rails.application.credentials.iex_secret_token,
-    #     endpoint: 'https://sandbox.iexapis.com/v1'
-    # )
+    @client = IEX::Api::Client.new(
+        publishable_token: Rails.application.credentials.iex_publishable_token,
+        secret_token: Rails.application.credentials.iex_secret_token,
+        endpoint: 'https://sandbox.iexapis.com/v1'
+    )
 
-    # @symbols = @client.ref_data_symbols
-    # @symbols.each do |x|
-    #     Stock.create(symbol: x.symbol)
-    # end
+    @symbols = @client.ref_data_symbols
+    @symbols.each do |x|
+        Stock.create(symbol: x.symbol)
+    end
 
     # @stocks = Stock.all
     # @stocks.each do |stock|
@@ -38,5 +38,6 @@
     #     end
     # end
     
-    User.create(email: 'ronald_admin@email.com', approved: TRUE, type: 'Admin', username: 'Ronald_admin', password: '123456', password_confirmation: '123456')
-    User.create(email: 'james_admin@email.com', approved: TRUE, type: 'Admin', username: 'James_admin', password: '123456', password_confirmation: '123456')
+    # creation of admin accounts
+    # User.create(email: 'ronald_admin@email.com', approved: TRUE, type: 'Admin', username: 'Ronald_admin', password: '123456', password_confirmation: '123456')
+    # User.create(email: 'james_admin@email.com', approved: TRUE, type: 'Admin', username: 'James_admin', password: '123456', password_confirmation: '123456')
