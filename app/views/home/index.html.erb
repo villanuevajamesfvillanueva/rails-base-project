@@ -51,7 +51,7 @@
             </h1>
           </div>  
           <p class="text-white leading-relaxed text-3xl italic">Built for traders by traders.</p>
-          <p class="text-white leading-relaxed mb-5 text-3xl italic">Manage your tasks in one place.</p>
+          <p class="text-white leading-relaxed mb-5 text-xl italic">Get the latest information on the rises and falls in stocks</p>
           <a href="#links" class="mx-auto mt-2 lg:mx-0 hover:underline bg-black text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
             Get Started
           </a>
@@ -90,11 +90,12 @@
         <!-- Card 1 -->
         <div class="max-w-md lg:m-4 shadow-md hover:shadow-lg hover:bg-gray-300 rounded-lg bg-gray-600 my-12 mx-8">
           <!-- Card Image -->
-               <img src="https://cdn.pixabay.com/photo/2016/05/24/16/48/mountains-1412683_1280.png" alt="montaña" />
+               <img src="https://images.unsplash.com/photo-1563986768711-b3bde3dc821e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1348&q=80" class="w-full h-72 rounded-xl" />
           <!-- Card Content -->
           <div class="p-4">
             <h3 class="font-medium text-white text-lg my-2 uppercase">Become a Broker</h3>
-            <p class="text-justify">Rapping wind chamber have was has, is all of thy stood chamber his bore. Nameless or as door tapping both thy grew lenore. We my still respiterespite lie, with lordly.</p>
+            <p class="text-justify">An individual or firm that acts as an intermediary between an investor and a securities exchange.
+                                    Can also refer to the role of a firm when it acts as an agent for a customer and charges the customer a commission for its services.</p>
              <div class="flex justify-center align-center mt-5">
               <%= link_to 'Sign up', new_broker_registration_path, class:"hover:bg-gray-700 rounded-full py-2 px-3 font-semibold hover:text-white bg-black text-white mr-4"%>
               <%= link_to 'Sign in', new_broker_session_path, class:"hover:bg-gray-700 rounded-full py-2 px-3 font-semibold hover:text-white bg-black text-white" %>
@@ -104,11 +105,12 @@
         <!-- Card 2 -->
         <div class="max-w-md lg:m-4 shadow-md hover:shadow-lg hover:bg-gray-300 rounded-lg bg-gray-600 my-12 mx-8">
           <!-- Card Image -->
-               <img src="https://cdn.pixabay.com/photo/2016/05/24/16/48/mountains-1412683_1280.png" alt="montaña" />
+               <img src="https://images.unsplash.com/photo-1518186233392-c232efbf2373?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80" class="w-full h-72 rounded-xl" />
           <!-- Card Content -->
           <div class="p-4">
             <h3 class="font-medium text-white text-lg my-2 uppercase">Become a Buyer</h3>
-            <p class="text-justify">Rapping wind chamber have was has, is all of thy stood chamber his bore. Nameless or as door tapping both thy grew lenore. We my still respiterespite lie, with lordly.</p>
+            <p class="text-justify">An individual that buy stocks from a Broker. A buyer can only buy stocks through broker but not directly from the stocks.
+                                    When you purchase a company's stock, you're purchasing a small piece of that company, called a share</p>
             <div class="flex justify-center align-center mt-5">
               <%= link_to 'Sign up', new_buyer_registration_path, class:"hover:bg-gray-700 rounded-full py-2 px-3 font-semibold hover:text-white bg-black text-white mr-4"%>
               <%= link_to 'Sign in', new_buyer_session_path, class:"hover:bg-gray-700 rounded-full py-2 px-3 font-semibold hover:text-white bg-black text-white" %>
@@ -148,18 +150,13 @@
       <div class="w-full mb-4">
         <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
       </div>
-      <h3 class="my-4 text-3xl leading-tight">
-        Main Hero Message to sell yourself!
-      </h3>
+
       <a href="#links" class="mx-auto pt-2 lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
         Get Started
       </a>
       
     </section>
-    
-    <%= link_to 'Admin Sign Up', new_admin_registration_path %><br>
-    <%= link_to 'Admin Sign In', new_admin_session_path %><br>
-    
+        
     <!-- jQuery if you need it
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   -->
