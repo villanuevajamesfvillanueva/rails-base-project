@@ -174,7 +174,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataT
                         <td class="w-full lg:w-auto text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                           <div class="flex justify-start align-center ml-20">
                           <%= form_with model: BuyerStock.new, local: true do |f| %>
-                            <%= f.hidden_field :broker_id, :value => broker_stock.buyer_id %>
+                            <%= f.hidden_field :broker_id, :value => broker_stock.broker_id %>
                             <%= f.hidden_field :buyer_id, :value => current_user.id %>
                             <%= f.hidden_field :stock_id, :value => broker_stock.stock_id %>
                             <%= f.hidden_field :companyname, :value => broker_stock.companyname %>

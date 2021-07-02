@@ -1,7 +1,7 @@
 class BuyersController < ApplicationController
   def show
     @buyer = Buyer.find(params[:id])
-    @buyer_stocks = BuyerStock.where(user_id: params[:id])
+    @buyer_stocks = BuyerStock.where(buyer_id: params[:id])
   end
 
   def edit
