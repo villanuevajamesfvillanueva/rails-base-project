@@ -163,3 +163,7 @@
     reset heroku db (refresh db)
     heroku run rails db:environment:set RAILS_ENV=production
     heroku run rails db:migrate (setup di inaallow ni heroku)
+
+
+## to change rails c environment
+    run: RAILS_ENV=production rails c
