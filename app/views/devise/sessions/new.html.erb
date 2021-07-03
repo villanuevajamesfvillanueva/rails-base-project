@@ -5,9 +5,16 @@
   </div>
     <div class="max-w-md w-full space-y-8 p-10 bg-black rounded-xl z-10">
       <div class="text-center">
+       <% if current_page?(broker_session_path) %>
         <h2 class="mt-6 text-3xl font-bold text-white">
-         Login to your account
-        </h2>
+         Login as Broker </h2>
+       <% elsif current_page?(buyer_session_path) %>
+        <h2 class="mt-6 text-3xl font-bold text-white">
+         Login as Buyer </h2>
+       <% else %>
+        <h2 class="mt-6 text-3xl font-bold text-white">
+         Login as Admin </h2>
+       <% end %>
       </div>
       
       <form class="mt-8 space-y-6" action="#" method="POST">
