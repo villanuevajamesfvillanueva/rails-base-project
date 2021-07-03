@@ -167,3 +167,14 @@
 
 ## to change rails c environment
     run: RAILS_ENV=production rails c
+
+
+## SETTING UP LOCAL AFTER GIT CLONE:
+    1. git clone <repo link>
+    2. pg_ctl start
+    3. copy file config/database.yml.sample and rename to config/database.yml
+    3. rails db:create
+    4. rails db:setup
+    5. rails db:migrate
+    6. yarn add tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
+    7. if still not working, try bin/webpack-dev-server
