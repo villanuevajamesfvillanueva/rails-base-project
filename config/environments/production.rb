@@ -118,8 +118,8 @@ Rails.application.configure do
     port:              '587',
     domain:            'heroku.com',
     authentication:    'plain',
-    user_name:         ENV['SENDGRID_USERNAME'],
-    password:          ENV['SENDGRID_PASSWORD'],
+    user_name:         Rails.application.credentials.gmail_smtp_email,
+    password:          Rails.application.credentials.gmail_smtp_password,
     enable_starttls_auto: true
   }
 
